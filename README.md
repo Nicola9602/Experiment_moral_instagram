@@ -240,10 +240,6 @@ The resulting estimated power is the **proportion of simulated studies meeting t
 
 The script specifies fixed-effect *main-effect names* in its `mixedpower()` calls, even when the underlying pilot models include interactions. Power for the interaction terms should not be assumed to have been evaluated merely because the interactions appear in the fitted model formula. The code also calls `mixedpower()` more than once into an object named `powertest`, overwriting earlier results rather than retaining all runs separately.
 
-### 7.5 Limitations and reproducibility
-
-These are **pilot-model-based simulations**, so results depend strongly on the small pilot sample, fitted effects and variance estimates. Before reporting the analysis as a definitive power calculation, verify the package-specific `critical_value` convention, which coefficients and tests are evaluated, the participant-sampling design, the binary-versus-linear model choice, and the mismatch between numeric pilot rating models and final ordinal rating models. Set and document a random seed, preserve the installed R and `mixedpower` versions, and save simulation outputs to files rather than relying on an interactive R session.
-
 ## 8. Reproducing the study
 
 With authorized access to the original data, the intended sequence is: (1) clean the Instagram response and questionnaire exports; (2) clean the Qualtrics dilemma export; (3) optionally generate the separate cleaned Qualtrics questionnaire workbook; (4) confirm that `I_dilemmas.xlsx` and `Q_dilemmas.xlsx` have matching expected columns and compatible participant identifiers; (5) run `Analysis_final_dilemmas_lmer.r`; and (6) run `power_analysis.r` on the **separate pilot files** when documenting the study's sample-size planning.
