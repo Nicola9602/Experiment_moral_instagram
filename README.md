@@ -1,5 +1,3 @@
-# Experiment_moral_instagram
-
 # Moral dilemma study: data cleaning and statistical analysis
 
 This repository documents the processing and statistical analysis of responses to moral dilemmas administered through **Instagram** and **Qualtrics**. Python scripts convert the original exports into consistent, long-format datasets and calculate questionnaire scores. R scripts subsequently compare responses across experimental groups and dilemma characteristics and estimate sample-size-dependent statistical power from pilot data.
