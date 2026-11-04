@@ -1,0 +1,12 @@
+# Local data and generated exports
+/data/
+/outputs/
+/Qualtrics_Dilemmas_Results.csv
+/df_questionnaires.xlsx
+/Q_dilemmas.xlsx
+
+# Python environment and caches
+.venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/

@@ -1,0 +1,5 @@
+__pycache__/
+*.py[cod]
+.venv/
+# Local questionnaire data and generated results
+*.xlsx
