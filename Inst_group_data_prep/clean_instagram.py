@@ -49,7 +49,7 @@ dfT = pd.concat(dfT, ignore_index=True)
 # NOw write a funciton to convert the timings from HH:MM:SS to seconds
 #--------------------------------------------------------------------------
 
-# Apply it to all dfT columns but zkip the first beause it is ResponseId
+# Apply it to all dfT columns but skip the first beause it is ResponseId
 for col in dfT.columns[1:]:
     dfT[col] = dfT[col].astype(str).apply(convert_to_seconds)  
 
@@ -177,9 +177,6 @@ for index, value in melted_Q['Question_New'].items():
 #     return x
 
 
-
-
-
 melted_Q['Answer'] = melted_Q['Answer'].apply(clean_answer)
 
 
@@ -190,8 +187,9 @@ I_dilemmas['Group'] = 'Instagram'
 
 # region 3. Questionnaire cleaning
 
-# Original raw-row corrections: verify these indices against your private export.
-# Notebook's original raw-row corrections; verify original Excel row order.
+# Some data are wrong. Here I don't have too much data, so I will change them manually. 
+# COnsider that with more data I should have probabily looped on them and flagged them for 
+# further considerations. 
 # Change the two nans that can be changed 
 dfIQ.loc[23, 'Q3_1'] = 'Youtube'
 dfIQ.loc[30, 'Q3_1'] = 'Youtube'
@@ -231,18 +229,8 @@ for col in reverse_columns:
 
 
 # Social Media Activity Questionnaire calculation (SMAQ)
-
-
-
 # Social Media Use Scale calculation (SMUS)
-
-
-
 # Social Media Mindset Scale calculation (SMMS)
-
-
-
-# Now you can call these functions on dfIQ
 calculate_smaq(dfIQ)
 calculate_SMUS(dfIQ)
 calculate_SMMS(dfIQ)
