@@ -3,8 +3,6 @@ data/*
 !data/README.md
 
 # Generated artifacts
-outputs/figures/*
-outputs/tables/*
 !outputs/README.md
 
 .Rhistory
