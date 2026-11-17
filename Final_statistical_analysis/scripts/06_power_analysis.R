@@ -1,19 +1,10 @@
-packages <- c(
-  "boot", "MASS", "robustlmm", "afex", "dplyr", "readr", "compute.es",
-  "car", "ggplot2", "multcomp", "pastecs", "WRS2", "tidyr", "readxl",
-  "DescTools", "knitr", "writexl", "rcompanion", "lsr", "ARTool", "lme4", 
-  "sjPlot", "interactions", "mixedpower", "vscDebugger", "Matrix", "jsonlite"
-)
-
-
-lapply(packages, library, character.only = TRUE)
 
 ##############################################################################
 # Dataset loading and preparation
 ##############################################################################
 
-I_dilemmas <- read_excel("pilot_I.xlsx")
-Q_dilemmas <- read_excel("pilot_Q.xlsx")
+I_dilemmas <- read_excel(file.path("data", "pilot_I.xlsx"))
+Q_dilemmas <- read_excel(file.path("data", "pilot_Q.xlsx"))
 cat("I_dilemmas:", dim(I_dilemmas), "\n")
 cat("Q_dilemmas:", dim(Q_dilemmas), "\n")
 cat("I_dilemmas col names:", colnames(I_dilemmas), "\n")
@@ -81,6 +72,10 @@ mlmAll <- lmer(
   )
 )
 
+# Save fitted pilot model for later inspection (private data may be embedded).
+saveRDS(mlmAll, file.path(power_models_dir, "binary_all_lmer.rds"))
+
+
 powertestAll <- mixedpower(
   model = mlmAll,
   data = df,
@@ -90,6 +85,14 @@ powertestAll <- mixedpower(
   critical_value = 2,
   n_sim = 1000
 )
+
+# Save simulation results and the original plot.
+saveRDS(powertestAll, file.path(power_models_dir, "binary_all_group_power_result.rds"))
+write.csv(as.data.frame(powertestAll),
+          file.path(power_tables_dir, "binary_all_group_power.csv"), row.names = FALSE)
+multiplotPower(powertestAll, filename = file.path(power_figures_dir, "binary_all_group_power.png"))
+
+
 
 as.data.frame(powertestAll)
 multiplotPower(powertestAll)
@@ -148,6 +151,10 @@ mlm <- glmer(
   )
 )
 
+# Save fitted pilot model for later inspection (private data may be embedded).
+saveRDS(mlm, file.path(power_models_dir, "binary_group_glmer.rds"))
+
+
 # Mixed logistic model
 mlm <- glmer(
   affirmative_response_total ~ c.group * c.dilemma * c.risk +
@@ -159,6 +166,10 @@ mlm <- glmer(
     optimizer = "bobyqa"
   )
 )
+
+# Save fitted pilot model for later inspection (private data may be embedded).
+saveRDS(mlm, file.path(power_models_dir, "binary_interaction_glmer.rds"))
+
 
 
 summary(mlm)
@@ -222,6 +233,13 @@ powertest <- mixedpower(
   n_sim = 1000
 )
 
+# Save simulation results and the original plot.
+saveRDS(powertest, file.path(power_models_dir, "binary_group_only_power_result.rds"))
+write.csv(as.data.frame(powertest),
+          file.path(power_tables_dir, "binary_group_only_power.csv"), row.names = FALSE)
+multiplotPower(powertest, filename = file.path(power_figures_dir,"binary_group_only_power.png"))
+
+
 powertest <- mixedpower(
   model = mlm,
   data = df,
@@ -231,6 +249,14 @@ powertest <- mixedpower(
   critical_value = 2,
   n_sim = 1000
 )
+
+# Save simulation results and the original plot.
+saveRDS(powertest, file.path(power_models_dir, "binary_interaction_predictors_power_result.rds"))
+write.csv(as.data.frame(powertest),
+          file.path(power_tables_dir, "binary_interaction_predictors_power.csv"), row.names = FALSE)
+multiplotPower(powertest, filename = file.path(power_figures_dir, "binary_interaction_predictors_power.png"))
+
+
 
 as.data.frame(powertest)
 multiplotPower(powertest)
@@ -274,6 +300,10 @@ mlmAD <- lmer(
   )
 )
 
+# Save fitted pilot model for later inspection (private data may be embedded).
+saveRDS(mlmAD, file.path(power_models_dir, "arousal_lmer.rds"))
+
+
 powertestAD <- mixedpower(
   model = mlmAD,
   data = df,
@@ -283,6 +313,14 @@ powertestAD <- mixedpower(
   critical_value = 2,
   n_sim = 1000
 )
+
+# Save simulation results and the original plot.
+saveRDS(powertestAD, file.path(power_models_dir, "arousal_power_result.rds"))
+write.csv(as.data.frame(powertestAD),
+          file.path(power_tables_dir, "arousal_power.csv"), row.names = FALSE)
+multiplotPower(powertestAD, filename = file.path(power_figures_dir, "arousal_power.png"))
+
+
 
 as.data.frame(powertestAD)
 multiplotPower(powertestAD)
@@ -317,6 +355,10 @@ mlmVD <- lmer(
   )
 )
 
+# Save fitted pilot model for later inspection (private data may be embedded).
+saveRDS(mlmVD, file.path(power_models_dir, "valence_lmer.rds"))
+
+
 powertestVD <- mixedpower(
   model = mlmVD,
   data = df,
@@ -326,6 +368,14 @@ powertestVD <- mixedpower(
   critical_value = 2,
   n_sim = 1000
 )
+
+# Save simulation results and the original plot.
+saveRDS(powertestVD, file.path(power_models_dir, "valence_power_result.rds"))
+write.csv(as.data.frame(powertestVD),
+          file.path(power_tables_dir, "valence_power.csv"), row.names = FALSE)
+multiplotPower(powertestVD, filename = file.path(power_figures_dir,"valence_power.png" ))
+
+
 
 as.data.frame(powertestVD)
 multiplotPower(powertestVD)
@@ -362,6 +412,10 @@ mlmMAD <- lmer(
   )
 )
 
+# Save fitted pilot model for later inspection (private data may be embedded).
+saveRDS(mlmMAD, file.path(power_models_dir, "moral_acceptability_lmer.rds"))
+
+
 powertestMAD <- mixedpower(
   model = mlmMAD,
   data = df,
@@ -371,6 +425,13 @@ powertestMAD <- mixedpower(
   critical_value = 2,
   n_sim = 1000
 )
+
+# Save simulation results and the original plot.
+saveRDS(powertestMAD, file.path(power_models_dir, "moral_acceptability_power_result.rds"))
+write.csv(as.data.frame(powertestMAD),
+          file.path(power_tables_dir, "moral_acceptability_power.csv"), row.names = FALSE)
+multiplotPower(powertestMAD, filename = file.path(power_figures_dir, "moral_acceptability_power.png"))
+
 
 as.data.frame(powertestMAD)
 multiplotPower(powertestMAD)

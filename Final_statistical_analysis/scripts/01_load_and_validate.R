@@ -1,15 +1,5 @@
 # Original dataset loading / preparation.
 
-packages <- c(
-  "boot", "MASS", "robustlmm", "afex", "dplyr", "readr", "compute.es",
-  "car", "ggplot2", "multcomp", "pastecs", "WRS2", "tidyr", "readxl",
-  "DescTools", "knitr", "writexl", "rcompanion", "lsr", "ARTool", "lme4",
-  "sjPlot", "DHARMa", "emmeans", "scales", "brms", "BH", "ordinal", "modelsummary",
-  "jtools", "ggdist", "patchwork", "ps", "robustlmm"
-)
-
-invisible(lapply(packages, library, character.only = TRUE))
-
 ##############################################################################
 # Dataset loading and preparation
 ##############################################################################

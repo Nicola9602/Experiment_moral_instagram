@@ -1,7 +1,7 @@
 # Original prediction plots and figure exports.
 
 # 8) Plot
-ggplot(emm_df, aes(x=c.dilemma, y=prob, fill=c.group)) +
+p_binary <- ggplot(emm_df, aes(x=c.dilemma, y=prob, fill=c.group)) +
   geom_col(position = position_dodge(width=0.915)) +
 facet_wrap(~c.risk) +
 scale_y_continuous(
@@ -19,7 +19,7 @@ labs(
 
 
 # Plot
-ggplot(data = YN_F) + 
+p_filler_binary <- ggplot(data = YN_F) + 
   aes(x = interaction(dilemma_type, group), y = affirmative_response_total) +
   stat_summary(fun = mean, geom = "bar", fill = "skyblue") +
   labs(y = "Percentage Affirmative", title = "Mean Affirmative Responses (Filler)") +
@@ -391,3 +391,11 @@ ggsave(
   height = 6.5,
   dpi = 300
 )
+
+
+# Save the two existing binary figures for later viewing.
+# These plots are assigned above; statistical calculations are unchanged.
+ggsave(filename = "binary_predicted_probabilities.png", path = output_dir,
+       plot = p_binary, width = 10, height = 6, dpi = 300)
+ggsave(filename = "filler_binary_observed.png", path = output_dir,
+       plot = p_filler_binary, width = 10, height = 6, dpi = 300)

@@ -551,3 +551,20 @@ write.csv(
   "outputs/tables/moral_acceptability_model_comparison.csv",
   row.names = FALSE
 )
+
+# ============================================================
+# Additional saved outputs for later review (no model changes)
+# ============================================================
+
+# Keep filler models available without refitting.
+saveRDS(modADF_ord1, "outputs/models/filler_arousal_model.rds")
+saveRDS(modVDF_ord1, "outputs/models/filler_valence_model.rds")
+saveRDS(modMADF_ord1, "outputs/models/filler_moral_acceptability_model.rds")
+
+# Save marginal mean-category estimates and category probabilities.
+write.csv(emm_dfAD_mean, "outputs/tables/arousal_estimated_mean_categories.csv", row.names = FALSE)
+write.csv(emm_dfAD_prob, "outputs/tables/arousal_predicted_probabilities.csv", row.names = FALSE)
+write.csv(emm_dfVD_mean, "outputs/tables/valence_estimated_mean_categories.csv", row.names = FALSE)
+write.csv(emm_dfVD_prob, "outputs/tables/valence_predicted_probabilities.csv", row.names = FALSE)
+write.csv(emm_dfMAD_mean, "outputs/tables/moral_acceptability_estimated_mean_categories.csv", row.names = FALSE)
+write.csv(emm_dfMAD_prob, "outputs/tables/moral_acceptability_predicted_probabilities.csv", row.names = FALSE)

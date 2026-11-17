@@ -1,6 +1,18 @@
 # Run the analysis in sequence.
 # Start R with the project root as the working directory.
 
+
+packages <- c(
+  "boot", "MASS", "robustlmm", "afex", "dplyr", "readr", "compute.es",
+  "car", "ggplot2", "multcomp", "pastecs", "WRS2", "tidyr", "readxl",
+  "DescTools", "knitr", "writexl", "rcompanion", "lsr", "ARTool", "lme4",
+  "sjPlot", "DHARMa", "emmeans", "scales", "brms", "BH", "ordinal", "modelsummary",
+  "jtools", "ggdist", "patchwork", "ps", "robustlmm"
+)
+
+invisible(lapply(packages, library, character.only = TRUE))
+
+
 data_dir <- "data"
 output_dir <- file.path("outputs", "figures")
 dir.create("outputs/figures", recursive = TRUE, showWarnings = FALSE)

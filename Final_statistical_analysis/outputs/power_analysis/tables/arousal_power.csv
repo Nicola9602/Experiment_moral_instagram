@@ -1,0 +1,8 @@
+"60","70","80","90","100","110","120","mode","effect"
+1,1,1,1,1,1,1,"databased","c.group"
+0.972,0.992,0.995,0.999,1,1,1,"databased","c.dilemma"
+0.222,0.234,0.217,0.287,0.277,0.3,0.328,"databased","c.risk"
+1,1,1,1,1,1,1,"databased","c.group:c.dilemma"
+0.999,0.998,1,1,1,1,1,"databased","c.group:c.risk"
+0.058,0.052,0.049,0.052,0.048,0.043,0.055,"databased","c.dilemma:c.risk"
+0.888,0.911,0.957,0.954,0.985,0.987,0.993,"databased","c.group:c.dilemma:c.risk"

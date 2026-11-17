@@ -1,11 +1,42 @@
-# Participant-level datasets (private)
-data/*
+# ==========================================
+# Private participant datasets
+# ==========================================
+
+# Ignore everything inside data/
+data/**
+
+# Keep documentation
 !data/README.md
 
-# Generated artifacts
-!outputs/README.md
+
+# ==========================================
+# Fitted models (may contain participant data)
+# ==========================================
+
+# Main statistical models
+outputs/models/
+
+# Pilot power-analysis models and simulations
+outputs/power_analysis/models/
+
+
+# ==========================================
+# R temporary and environment files
+# ==========================================
 
 .Rhistory
 .RData
 .Ruserdata
 .Rproj.user/
+
+# Local renv packages (keep renv.lock)
+renv/library/
+renv/staging/
+
+
+# ==========================================
+# Operating system files
+# ==========================================
+
+.DS_Store
+Thumbs.db
